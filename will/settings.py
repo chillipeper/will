@@ -113,7 +113,8 @@ def import_settings(quiet=True):
                         warn("%s is set in the environment as '%s', but overridden in"
                              " config.py as '%s'." % (k, os.environ[k], v))
                         had_warning = True
-                    settings[k] = v
+                    if k not in settings:
+                        settings[k] = v
 
             if not had_warning and not quiet:
                 show_valid("Valid.")
